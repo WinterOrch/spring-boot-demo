@@ -1,0 +1,14 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /demo
+spring:
+  redis:
+    host: localhost
+    timeout: 10000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
