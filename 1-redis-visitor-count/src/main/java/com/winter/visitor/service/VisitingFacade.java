@@ -57,7 +57,7 @@ public class VisitingFacade {
             // Page's first visit
             visServ.incrPV(pvKey, uri);
             visServ.setUV(uvKey, visitor_ip, 1L);
-            visServ.markVisitToday(visitorTodayKey, visitor_ip);
+            visServ.visitToday(visitorTodayKey, visitor_ip);
             return new VisitorVO(1L, 1L, 1L, temperature);
         }
 
@@ -90,8 +90,6 @@ public class VisitingFacade {
                 // IP's first visit today， pv += 1 ; uv remains
                 res.setPage_vis(pv + 1);
             }
-
-            visServ.markVisitToday(visitorTodayKey, visitor_ip);
         }
 
         return res;

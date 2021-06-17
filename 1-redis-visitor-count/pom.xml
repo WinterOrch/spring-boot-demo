@@ -12,6 +12,11 @@
     <properties>
         <guava.version>30.1.1-jre</guava.version>
         <commons-pool2.version>2.6.0</commons-pool2.version>
+        <spring-boot-starter-data-redis.version>2.2.13.RELEASE</spring-boot-starter-data-redis.version>
+        <spring-boot-starter-data-redis-reactive.version>
+            ${spring-boot-starter-data-redis.version}
+        </spring-boot-starter-data-redis-reactive.version>
+        <spring-boot-maven-plugin.version>2.4.5</spring-boot-maven-plugin.version>
     </properties>
 
     <artifactId>1-redis-visitor-count</artifactId>
@@ -33,20 +38,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>2.3.10.RELEASE</version>
+            <version>${spring-boot-starter-data-redis.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis-reactive -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-            <version>2.1.0.RELEASE</version>
+            <version>${spring-boot-starter-data-redis-reactive.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>2.4.5</version>
+            <version>${spring-boot-maven-plugin.version}</version>
         </dependency>
 
         <!-- commons-pool -->

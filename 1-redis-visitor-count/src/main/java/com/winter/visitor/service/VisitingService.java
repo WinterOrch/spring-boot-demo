@@ -1,9 +1,5 @@
 package com.winter.visitor.service;
 
-
-import com.google.common.base.Charsets;
-import com.google.common.hash.BloomFilter;
-import com.google.common.hash.Funnels;
 import com.winter.visitor.common.consts.RedisKey;
 import com.winter.visitor.vo.VisitorVO;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -11,25 +7,20 @@ import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import java.io.Serializable;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings("UnstableApiUsage")
 @Component
 public class VisitingService {
-    private static final int BLOOM_FILTER_EXPECTED_INSERTION = 1500;
-    private static final double BLOOM_FILTER_FPP = 0.001;
+    /*private static final int BLOOM_FILTER_EXPECTED_INSERTION = 1500;
+    private static final double BLOOM_FILTER_FPP = 0.001;*/
 
     private final RedisTemplate<String, Long> redisTemplate;
-    private final RedisTemplate<String, Serializable> redisCacheTemplate;
     private final RedisTemplate<String, String> strRedisTemplate;
 
     public VisitingService(RedisTemplate<String, Long> longRedisTemplate,
-                           RedisTemplate<String, Serializable> redisCacheTemplate,
                            RedisTemplate<String, String> strRedisTemplate) {
         this.redisTemplate = longRedisTemplate;
-        this.redisCacheTemplate = redisCacheTemplate;
         this.strRedisTemplate = strRedisTemplate;
     }
 
@@ -89,12 +80,21 @@ public class VisitingService {
 
     /**
      * 判断ip今天是否访问过
-     * 采用 com.google.common.hash.BloomFilter 来判断
+     * 不采用 com.google.common.hash.BloomFilter 来判断了
+     * HyperLogLog 真香
      *
      * @return true 表示今天访问过/ false 表示今天没有访问过
      */
     public boolean visitToday(String key, String ip) {
-        Serializable result = this.redisCacheTemplate.opsForValue().get(key);
+        Boolean doesLogTodayExist = this.strRedisTemplate.hasKey(key);
+        if (doesLogTodayExist != null && doesLogTodayExist) {
+            return (this.strRedisTemplate.opsForHyperLogLog().add(key, ip)) > 0L;
+        } else {
+            this.strRedisTemplate.opsForHyperLogLog().add(key, ip);
+            this.strRedisTemplate.expire(key, 1L, TimeUnit.DAYS);
+            return false;
+        }
+        /*Serializable result = this.redisCacheTemplate.opsForValue().get(key);
         if (result == null) {
             // 今日还没有访问，创建布隆过滤器，存入缓存
             BloomFilter<String> filterToday = BloomFilter.create(
@@ -108,14 +108,10 @@ public class VisitingService {
             // 今日有访问，取布隆过滤器
             BloomFilter<String> filterToday = (BloomFilter) result;
             return filterToday.mightContain(ip);
-        }
+        }*/
     }
 
-    /**
-     * 标记ip今天访问过
-     * 采用 com.google.common.hash.BloomFilter
-     */
-    public void markVisitToday(String key, String ip) {
+    /*public void markVisitToday(String key, String ip) {
         Serializable result = this.redisCacheTemplate.opsForValue().get(key);
         BloomFilter<String> filterToday;
         if (result == null) {
@@ -128,7 +124,7 @@ public class VisitingService {
         }
         filterToday.put(ip);
         this.redisCacheTemplate.opsForValue().set(key, filterToday, 1, TimeUnit.DAYS);
-    }
+    }*/
 
     /**
      * 每次访问，热度加一
