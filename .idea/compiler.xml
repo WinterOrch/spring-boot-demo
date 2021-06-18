@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="3-redis-to-db" />
         <module name="2-redis-rate-limit" />
         <module name="1-redis-visitor-count" />
       </profile>
@@ -15,6 +16,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="1-redis-visitor-count" options="-parameters" />
       <module name="2-redis-rate-limit" options="-parameters" />
+      <module name="3-redis-to-db" options="-parameters" />
     </option>
   </component>
 </project>

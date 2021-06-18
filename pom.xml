@@ -11,11 +11,13 @@
     <modules>
         <module>1-redis-visitor-count</module>
         <module>2-redis-rate-limit</module>
+        <module>3-redis-to-db</module>
     </modules>
 
     <properties>
         <springframework.version>5.3.6</springframework.version>
         <lombok.version>1.18.20</lombok.version>
+        <hutool.version>5.6.5</hutool.version>
     </properties>
 
     <parent>
@@ -72,6 +74,13 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
             <version>${lombok.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
 
     </dependencies>
