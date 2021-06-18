@@ -1,0 +1,21 @@
+spring:
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6379
+    password:
+    timeout: 100ms
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306
+    username: root
+    password: 123
+    driver-class-name: com.mysql.jdbc.Driver
+
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 10
+      maximum-pool-size: 10
+      idle-timeout: 10000
+      max-lifetime: 30000
+      auto-commit: true
