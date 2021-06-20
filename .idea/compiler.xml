@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="exception-handler" />
         <module name="4-redis-distributed-lock" />
         <module name="3-redis-to-db" />
         <module name="2-redis-rate-limit" />
@@ -19,6 +20,7 @@
       <module name="2-redis-rate-limit" options="-parameters" />
       <module name="3-redis-to-db" options="-parameters" />
       <module name="4-redis-distributed-lock" options="-parameters" />
+      <module name="exception-handler" options="-parameters" />
     </option>
   </component>
 </project>

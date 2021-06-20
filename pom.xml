@@ -13,6 +13,7 @@
         <module>2-redis-rate-limit</module>
         <module>3-redis-to-db</module>
         <module>4-redis-distributed-lock</module>
+        <module>exception-handler</module>
     </modules>
 
     <properties>
