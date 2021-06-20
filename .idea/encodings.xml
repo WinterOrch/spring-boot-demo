@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/1-redis-visitor-count/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/2-redis-rate-limit/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/3-redis-to-db/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/4-redis-distributed-lock/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

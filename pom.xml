@@ -12,6 +12,7 @@
         <module>1-redis-visitor-count</module>
         <module>2-redis-rate-limit</module>
         <module>3-redis-to-db</module>
+        <module>4-redis-distributed-lock</module>
     </modules>
 
     <properties>
