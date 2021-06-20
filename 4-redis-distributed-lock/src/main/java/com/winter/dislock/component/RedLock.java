@@ -15,6 +15,9 @@ public class RedLock {
     private final RedisScript<Boolean> tryLockScript;
     private final RedisScript<Boolean> releaseLockScript;
 
+    private final String LOC_PREFIX = RedConst.REDIS_DIS_LOCK_PREFIX;
+    private final String RED_SEPARATOR = RedConst.SEPARATOR;
+
     public RedLock(StringRedisTemplate strRedisTemplate,
                    RedisScript<Boolean> tryLockRedisScript, RedisScript<Boolean> releaseLockRedisScript) {
         this.strRedisTemplate = strRedisTemplate;
@@ -22,13 +25,13 @@ public class RedLock {
         this.releaseLockScript = releaseLockRedisScript;
     }
 
-    public Boolean tryLock(String partKey, String value) {
+    public Boolean tryLock(String partKey, String distributedId) {
         return this.strRedisTemplate.execute(this.tryLockScript,
-                Arrays.asList(RedConst.REDIS_DIS_LOCK_PREFIX + RedConst.SEPARATOR + partKey, value));
+                Arrays.asList(LOC_PREFIX + RED_SEPARATOR + partKey, distributedId));
     }
 
-    public Boolean releaseLock(String partKey, String value) {
+    public Boolean releaseLock(String partKey, String distributedId) {
         return this.strRedisTemplate.execute(this.releaseLockScript,
-                Arrays.asList(RedConst.REDIS_DIS_LOCK_PREFIX + RedConst.SEPARATOR + partKey, value));
+                Arrays.asList(LOC_PREFIX + RED_SEPARATOR + partKey, distributedId));
     }
 }

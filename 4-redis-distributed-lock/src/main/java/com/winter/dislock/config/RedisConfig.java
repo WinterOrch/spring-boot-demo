@@ -29,6 +29,22 @@ public class RedisConfig {
     }
 
     @Bean
+    public RedisScript<Boolean> reentrantReleaseLockRedisScript() {
+        DefaultRedisScript<Boolean> redisScript = new DefaultRedisScript<>();
+        redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("scripts/redis/rentrant_releaselock.lua")));
+        redisScript.setResultType(Boolean.class);
+        return redisScript;
+    }
+
+    @Bean
+    public RedisScript<Boolean> reentrantTryLockRedisScript() {
+        DefaultRedisScript<Boolean> redisScript = new DefaultRedisScript<>();
+        redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("scripts/redis/rentrant_trylock.lua")));
+        redisScript.setResultType(Boolean.class);
+        return redisScript;
+    }
+
+    @Bean
     public StringRedisTemplate strRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
         StringRedisTemplate template = new StringRedisTemplate();
         template.setConnectionFactory(redisConnectionFactory);
