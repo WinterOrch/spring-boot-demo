@@ -5,8 +5,9 @@ Demo Cases for Springboot Learning
 
 ## Redis
 
-| [1-redis-visitor-count](https://github.com/WinterOrch/spring-boot-demo/tree/master/1-redis-visitor-count) | 访客数量   |
+|                                                              | 功能       |
 | ------------------------------------------------------------ | ---------- |
+| [1-redis-visitor-count](https://github.com/WinterOrch/spring-boot-demo/tree/master/1-redis-visitor-count) | 访客数量   |
 | [2-redis-rate-limit](https://github.com/WinterOrch/spring-boot-demo/tree/master/2-redis-rate-limit) | API限流    |
 | [3-redis-to-db](https://github.com/WinterOrch/spring-boot-demo/tree/master/3-redis-to-db) | 批量持久化 |
 | [4-redis-distributed-lock](https://github.com/WinterOrch/spring-boot-demo/tree/master/4-redis-distributed-lock) | 分布式锁   |
@@ -40,3 +41,15 @@ Redis 控制 API 访问次数
 ### 4. Distributed Lock
 
 Redis 分布式锁
+
+</p>
+
+## Exception Handler
+
+|                                                              | 功能         |
+| ------------------------------------------------------------ | ------------ |
+| [exception-handler](https://github.com/WinterOrch/spring-boot-demo/tree/master/exception-handler) | 全局异常处理 |
+
+---
+
+通过 `@ControllerAdvice` 统一处理异常，管理自定义异常类，返回统一的 ApiResponse 作为响应。
